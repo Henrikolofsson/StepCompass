@@ -8,15 +8,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.stepcompass.Controller;
 import com.example.stepcompass.Entities.UserStepData;
 import com.example.stepcompass.R;
-import com.example.stepcompass.Util.DateConverter;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @StepEntriesAdapter is an adapter for all of the RecyclerView components in the StepHistory-list.
+ */
 public class StepEntriesAdapter extends RecyclerView.Adapter<StepEntriesAdapter.Holder>{
     private LayoutInflater inflater;
     private List<UserStepData> content;

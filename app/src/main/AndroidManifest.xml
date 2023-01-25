@@ -18,7 +18,7 @@
             android:exported="true"></service>
 
         <receiver
-            android:name=".Util.CompassBroadcastReceiver"
+            android:name=".Util.StepBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -27,7 +27,7 @@
         </receiver>
 
         <service
-            android:name=".CompassService.CompassService2"
+            android:name=".CompassService.CompassService"
             android:enabled="true"
             android:exported="true" />
 

@@ -15,6 +15,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @DBHandler is a util class to make asynchronous calls to the database using the Executors class.
+ */
 public class DBHandler {
     private Controller controller;
     private DBAccess dbAccess;

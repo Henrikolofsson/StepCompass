@@ -12,13 +12,19 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-
-public class CompassService2 extends Service implements SensorEventListener {
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   NOT USED!!!
+ *   First I planned to use a service to handle the compass, but ended up to do it in the activity.
+ */
+public class CompassService extends Service implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor mAccelerometer;
     private Sensor mMagnetometer;
 
-    public CompassService2() {
+    public CompassService() {
 
     }
 

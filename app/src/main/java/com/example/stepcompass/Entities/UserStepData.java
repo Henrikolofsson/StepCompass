@@ -10,7 +10,12 @@ import com.example.stepcompass.Util.DateConverter;
 
 import java.sql.Date;
 
-
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @UserStepData  Entity class that also annotates the database table as a reference.
+ */
 @Entity(tableName = "user_step_data")
 @TypeConverters(DateConverter.class)
 public class UserStepData {

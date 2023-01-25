@@ -1,8 +1,6 @@
 package com.example.stepcompass.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,23 +14,20 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.example.stepcompass.CompassService.CompassService2;
 import com.example.stepcompass.R;
-import com.example.stepcompass.Util.CompassBroadcastReceiver;
 
 import java.util.Random;
 
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ */
 public class CompassActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor mAccelerometer;
     private Sensor mMagnetometer;
 
     private ImageView ivCompass;
- //   private Intent serviceIntent;
- //   private CompassService2 compassService;
- //   private boolean lastAccelerometerSet = false;
- //   private boolean lastMagnetometerSet = false;
     private boolean isAnimation = false;
     private boolean isShakeDetected = false;
     private float acceleration = 10f;
@@ -49,9 +44,6 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
         setContentView(R.layout.activity_compass);
         sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
         ivCompass = (ImageView) findViewById(R.id.iv_compass);
-//        compassService = new CompassService2();
-//        serviceIntent = new Intent(this, CompassService2.class);
- //       startService(serviceIntent);
 
         if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null && sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) != null) {
             mAccelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -73,23 +65,24 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
         ivCompass.setRotation(v);
     }
 
+    /*
+        @OnSensorChanged is called when a sensor event is triggered.
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(event.sensor == mAccelerometer) {
-            // Fetching x,y,z values
+            // Getting the x,y,z values
             float x = event.values[0];
             float y = event.values[1];
             float z = event.values[2];
             lastAcceleration = currentAcceleration;
 
             // Getting current accelerations
-            // with the help of fetched x,y,z values
             currentAcceleration = (float) Math.sqrt(x * x + y * y + z * z);
             float delta = (currentAcceleration - lastAcceleration);
             acceleration = acceleration * 0.9f + delta;
 
-            // Display a Toast message if
-            // acceleration value is over 12
+            // Show a Toast message if acceleration value is over the threshold
             if (acceleration > 30) {
                 Toast.makeText(this, "Shake event detected", Toast.LENGTH_SHORT).show();
                 isShakeDetected = true;
@@ -97,6 +90,7 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
             }
         }
 
+        //If the phone is shook and an animation is not already in progress.
         if(isShakeDetected && !isAnimation) {
             Random rand = new Random();
             int nbrOfRotations = rand.nextInt(3);
@@ -118,6 +112,7 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
                 }
             }, 5000);
 
+            //If a phone is not shaken and the animation is not in progress, rotate the compass to North.
         } else if (!isShakeDetected && !isAnimation){
             if(event.sensor == mAccelerometer) {
                 floatGravity = event.values;

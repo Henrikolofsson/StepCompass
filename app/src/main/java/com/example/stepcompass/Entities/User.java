@@ -5,6 +5,12 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @User  Entity class that also annotates the database table as a reference.
+ */
 @Entity(tableName = "user_table")
 public class User {
     @PrimaryKey(autoGenerate = true)

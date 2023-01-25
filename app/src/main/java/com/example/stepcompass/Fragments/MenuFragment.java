@@ -12,7 +12,12 @@ import android.widget.ImageButton;
 import com.example.stepcompass.Controller;
 import com.example.stepcompass.R;
 
-
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @LoginFragment     The fragment for the menu window after user is logged in.
+ */
 public class MenuFragment extends Fragment {
     private ImageButton ib_steps;
     private ImageButton ib_compass;

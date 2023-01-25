@@ -13,7 +13,12 @@ import android.widget.EditText;
 import com.example.stepcompass.Controller;
 import com.example.stepcompass.R;
 
-
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @LoginFragment     The fragment for the login window.
+ */
 public class LoginFragment extends Fragment {
     private EditText et_username;
     private EditText et_password;

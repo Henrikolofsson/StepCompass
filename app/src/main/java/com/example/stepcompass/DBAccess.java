@@ -14,7 +14,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   Uses the Database Access Object interface to declare the DBHandling functions.
+ */
 public class DBAccess {
     private static final String DATABASE_NAME = "StepDB";
     private static Database database;

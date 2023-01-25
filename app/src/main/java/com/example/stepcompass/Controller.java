@@ -7,9 +7,15 @@ import android.widget.Toast;
 import com.example.stepcompass.AsyncTasks.DBHandler;
 import com.example.stepcompass.Fragments.LoginFragment;
 import com.example.stepcompass.Fragments.MenuFragment;
-import com.example.stepcompass.Util.CompassBroadcastReceiver;
+import com.example.stepcompass.Util.StepBroadcastReceiver;
 
-
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @Controller    A controller that checks if the user exists and if the password is correct.
+ *                  Sets the menu fragment in the R.id.main_container (MainActivity container).
+ */
 public class Controller {
     private MainActivity activity;
     private DBAccess dbAccess;
@@ -21,7 +27,7 @@ public class Controller {
     private String userName;
     private int userId;
 
-    private CompassBroadcastReceiver br;
+    private StepBroadcastReceiver br;
 
     public Controller(MainActivity mainActivity) {
         this.activity = mainActivity;
@@ -65,7 +71,7 @@ public class Controller {
     }
 
     private void initBroadcastReceiver() {
-        br = new CompassBroadcastReceiver(this);
+        br = new StepBroadcastReceiver(this);
         IntentFilter intentfilter = new IntentFilter("com.example.broadcast.stepupdates");
         activity.registerReceiver(br, intentfilter);
     }

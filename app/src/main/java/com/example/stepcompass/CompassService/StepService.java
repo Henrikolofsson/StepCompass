@@ -15,14 +15,16 @@ import android.widget.Toast;
 import com.example.stepcompass.AsyncTasks.DBHandler;
 import com.example.stepcompass.DBAccess;
 import com.example.stepcompass.Entities.UserStepData;
-import com.example.stepcompass.Util.CompassBroadcastReceiver;
-import com.example.stepcompass.Util.DateConverter;
 
 import java.sql.Date;
 import java.util.Calendar;
-import java.util.Timer;
-import java.util.TimerTask;
 
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @StepService   A service started by the StepActivity, its a local bound service. It will destroy when the Activity destroys.
+ */
 public class StepService extends Service implements SensorEventListener {
     public StepServiceBinder serviceBinder;
     private SensorManager sensorManager;
@@ -41,6 +43,10 @@ public class StepService extends Service implements SensorEventListener {
     public StepService() {
     }
 
+    /*
+        @OnBind     Will be called when an intent to start the StepService is called from StepActivity.
+                    It registers/subscribing the stepSensor for SensorEvent calls.
+     */
     @Override
     public IBinder onBind(Intent intent) {
         this.intent = intent;
@@ -57,9 +63,14 @@ public class StepService extends Service implements SensorEventListener {
     }
 
 
+    /*
+       @onUBind     Will be called when the Activity is either destroyed or paused.
+                    If there is an existing StepEntry for this user at the same day it will update the step count values.
+                    Else, it will create a new StepEntry in the users step history.
+                    Unregisters the Sensor.TYPE_STEP_COUNTER
+    */
     @Override
     public boolean onUnbind(Intent intent) {
-
         Calendar c = Calendar.getInstance();
         long day = c.getTimeInMillis();
         Date date = new Date(day);
@@ -76,6 +87,9 @@ public class StepService extends Service implements SensorEventListener {
         return super.onUnbind(intent);
     }
 
+    /*
+        @OnCreate   Sets up database access objects. Registers the sensor.
+     */
     @Override
     public void onCreate() {
         super.onCreate();

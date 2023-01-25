@@ -11,7 +11,12 @@ import com.example.stepcompass.Entities.UserStepData;
 import java.sql.Date;
 import java.util.List;
 
-
+/*
+ *   @Author    Henrik Olofsson
+ *   @Date      2023-01-25
+ *
+ *   @DAO Database access object interface
+ */
 @Dao
 public interface DAO {
     @Insert
